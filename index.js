@@ -5,8 +5,6 @@ const app = express();
 //express.static
 app.use(morgan('common'));
 app.use(express.static('public'));
-let staticPath = path.join(__public, "static");
-app.use(express.static(staticPath));
 // app.use('documentation', express.static('public'));
 
 
@@ -64,6 +62,7 @@ app.get('/movies', (req, res) => {
 app.get('/', (req, res) => {
   res.send('Welcome to Movie Paradise!');
 });
+
 
 
 
