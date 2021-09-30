@@ -2,6 +2,12 @@ const express = require('express');
 morgan = require('morgan');
 const app = express();
 
+//express.static
+app.use(morgan('common'));
+app.use(express.static('public'));
+let staticPath = path.join(__public, "static");
+app.use(express.static(staticPath));
+// app.use('documentation', express.static('public'));
 
 
 let topMovies = [{
@@ -59,17 +65,14 @@ app.get('/', (req, res) => {
   res.send('Welcome to Movie Paradise!');
 });
 
-//express.static
-app.use('/documentation.html', express.static('public'));
 
-//Use the Morgan middleware library to log all requests (instead of using the fs module to write to a text file).
 
-app.use(morgan('common'));
+// //Use the Morgan middleware library to log all requests (instead of using the fs module to write to a text file).
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Movie Paradise!');
-});
 
+// app.get('/', (req, res) => {
+//   res.send('Welcome to Movie Paradise!');
+// });
 
 
 //error handling
