@@ -29,6 +29,122 @@
     <li>Allow existing users to deregister</li>
   </ul>
 
+  <h1>API: URL endpoints</h1>
+  <table style="width: 100vw;" >
+    <tbody>
+    <tr>
+    <td>REQUEST</td>
+    <td>URL</td>
+    <td>HTTP METHOD</td>
+    <td>Request body data format</td>
+    <td>Response body data format</td>
+    </tr>
+    <tr>
+    <td>Return a list of ALL movies to the user</td>
+    <td>/movies</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>A JSON object holding data about  all movies</td>
+    </tr>
+    <tr>
+    <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
+    <td>/movies/[title]</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>A JSON object holding details about a single movie containing title, genre, director, image URL, description.<br>
+      {
+        id: 1,
+        title: "Inception",
+        details: {
+        genre: "thriller, Sci-Fi",
+        director: "Christopher Nolan",
+        description: "description",
+        image: imageURL
+        }
+      }
+    </td>
+    </tr>
+    <tr>
+    <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
+    <td>/movies/[genre]</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>A JSON object holding details about single movie genre by title.<br>
+      {
+        id: 1,
+        title: "Inception",
+        genre: "thriller, Sci-Fi"
+      }
+    </td>
+    </tr>
+    <tr>
+    <td>Return data about a director (bio, birth year, death year) by name</td>
+    <td>/movies/[director]</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>A JSON object holding details about movie director. <br>
+        { id: 1,
+          director:  {
+            name: "Christopher Nolan",
+            bio: "biography",
+            birth year: "1966",
+            death year: "none"
+          }
+        }</td>
+    </tr>
+    <tr>
+    <td>Allow new users to register</td>
+    <td>/users/register</td>
+    <td>POST</td>
+    <td>A JSON object holding data about user to add. <br>
+    {
+      name: "Mary",
+      last name: "Smith",
+      username: "msmith123",
+      e-mail: "mary.smith@email.com",
+      password: "12345678"
+    }</td>
+    <td>A JSON object holding data about the user that was added, including an ID: <br>
+      {
+        id: 2,
+        name: "Mary",
+      last name: "Smith",
+      username: "msmith123",
+      e-mail: "mary.smith@email.com",
+      password: "12345678"
+      }
+    </td>
+    </tr>
+    <tr>
+    <td>Allow users to update their user info (username)</td>
+    <td>/users/edit/[username]</td>
+    <td>PUT</td>
+    <td>None</td>
+    <td>A text message indicating that the user has successfully updated their info</td>
+    </tr>
+    <tr>
+    <td>Allow users to add a movie to their list of favorites</td>
+    <td>/users/[username]/movies/[ID]</td>
+    <td>PUT</td>
+    <td>None</td>
+    <td>A text message indicating that the user has successfully added movie to the favourites</td>
+    </tr>
+    <tr>
+    <td>Allow users to remove a movie from their list of favorites</td>
+    <td>/users/[username]/movies/[ID]</td>
+    <td>DELETE</td>
+    <td>None</td>
+    <td>A text message indicating that the movie was successfully removed from the list of favorites</td>
+    </tr>
+    <tr>
+    <td>Allow existing users to deregister</td>
+    <td>/users/[ID]</td>
+    <td>DELETE</td>
+    <td>None</td>
+    <td>A text message indicating that the user has successfully deregistered</td>
+    </tr>
+    </tbody>
+    </table>
 </body>
 
 </html>
