@@ -60,6 +60,20 @@ let movies = [{
   }
 ];
 
+let users = [{
+    id: 1,
+    name: 'Jessica Drake'
+  },
+  {
+    id: 2,
+    name: 'Maria Milton'
+  },
+  {
+    id: 3,
+    name: 'Robert Fenyer'
+  },
+]
+
 //create an Express GET route located at the endpoint “/movies” that returns
 //a JSON object containing data about your top 10 movies.
 
@@ -105,8 +119,8 @@ app.get('/movies/:director', (req, res) => {
 // User registration
 
 app.post('/users/register', (req, res) => {
-  let newUser = req.body;
 
+  let newUser = req.body.users;
   if (!newUser.name) {
     const message = 'Missing name in request body';
     res.status(400).send(message);
