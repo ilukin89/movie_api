@@ -18,6 +18,7 @@ const Movies = Models.Movie;
 const Users = Models.User;
 // const Directors = Models.Directors;
 
+
 mongoose.connect('mongodb://localhost:27017/test', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -60,7 +61,7 @@ app.get('/users', (req, res) => {
 
 // Return single movie data by title
 app.get('/movies/:Title', (req, res) => {
-  Movies.find({
+  Movies.findOne({
       Title: req.params.Title
     })
     .then((movie) => {
@@ -72,7 +73,6 @@ app.get('/movies/:Title', (req, res) => {
     });
 });
 
-//list all genres
 
 
 
@@ -95,11 +95,11 @@ app.get('/movies/genre/:Name', (req, res) => {
 // Return data about director by name
 
 app.get('/movies/director/:Name', (req, res) => {
-  Movies.find({
+  Movies.findOne({
       'Director.Name': req.params.Name
     })
     .then((director) => {
-      res.json(director);
+      res.json(director.Director);
     })
     .catch((err) => {
       console.error(err);
