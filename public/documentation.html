@@ -53,15 +53,22 @@
     <td>None</td>
     <td>A JSON object holding details about a single movie containing title, genre, director, image URL, description.<br>
       {
-        id: 1,
-        title: "Inception",
-        details: {
-        genre: "thriller, Sci-Fi",
-        director: "Christopher Nolan",
-        description: "description",
-        image: imageURL
-        }
-      }
+        "Genre": {
+            "Name": "Sci-Fi",
+            "Description": "genre of speculative fiction that typically deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life"
+        },
+        "Director": {
+            "Name": "Christopher Nolan",
+            "Bio": "Best known for his cerebral, often nonlinear, storytelling",
+            "Birth": "1970-01-01T00:00:00.000Z"
+        },
+        "Actors": [],
+        "_id": "616325f6274060b75870fc61",
+        "Title": "Inception",
+        "Description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster",
+        "ImagePath": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
+        "Featured": true
+    }
     </td>
     </tr>
     <tr>
@@ -71,10 +78,10 @@
     <td>None</td>
     <td>A JSON object holding details about single movie genre by title.<br>
       {
-        id: 1,
-        title: "Inception",
-        genre: "thriller, Sci-Fi"
-      }
+        "Genre": {
+            "Name": "Sci-Fi",
+            "Description": "Science fiction (sometimes shortened to sci-fi or SF) is a genre of speculative fiction that typically deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life."
+        },
     </td>
     </tr>
     <tr>
@@ -83,65 +90,94 @@
     <td>GET</td>
     <td>None</td>
     <td>A JSON object holding details about movie director. <br>
-        { id: 1,
-          director:  {
-            name: "Christopher Nolan",
-            bio: "biography",
-            birth year: "1966",
-            death year: "none"
-          }
-        }</td>
+      "Director": {
+        "Name": "Christopher Nolan",
+        "Bio": "Best known for his cerebral, often nonlinear, storytelling",
+        "Birth": "1970-01-01T00:00:00.000Z"
+    },</td>
     </tr>
     <tr>
     <td>Allow new users to register</td>
-    <td>/users/register</td>
+    <td>/users/</td>
     <td>POST</td>
     <td>A JSON object holding data about user to add. <br>
-    {
-      name: "Mary",
-      last name: "Smith",
-      username: "msmith123",
-      e-mail: "mary.smith@email.com",
-      password: "12345678"
+      {
+        "Username":"blabla",
+        "Password": "3243423",
+        "Email":"huifewhui@gmail.com",
+        "Birthday":"02/03/92"
     }</td>
     <td>A JSON object holding data about the user that was added, including an ID: <br>
       {
-        id: 2,
-        name: "Mary",
-      last name: "Smith",
-      username: "msmith123",
-      e-mail: "mary.smith@email.com",
-      password: "12345678"
-      }
+        "Username": "blabla",
+        "Password": "3243423",
+        "Email": "huifewhui@gmail.com",
+        "Birthday": "1992-02-02T23:00:00.000Z",
+        "FavoriteMovies": [],
+        "_id": "6165dad553f7575af88ec2f7",
+        "__v": 0
+    }
     </td>
     </tr>
     <tr>
-    <td>Allow users to update their user info (username)</td>
-    <td>/users/edit/[ID]</td>
+    <td>Allow users to update their user info (ex.password)</td>
+    <td>/users/[user]</td>
     <td>PUT</td>
-    <td>None</td>
-    <td>A text message indicating that the user has successfully updated their info</td>
+    <td>Example: {
+      "Password": "jijrioejieor"}</td>
+    <td>Updated details of the user<br>{
+      "_id": "6165a66a2b884c8766b07cc0",
+      "Username": "maja",
+      "Password": "jijrioejieor",
+      "Email": "testrereuser@gmail.com",
+      "Birthday": "1992-02-01T23:00:00.000Z",
+      "FavoriteMovies": [],
+      "__v": 0
+  }</td>
     </tr>
     <tr>
     <td>Allow users to add a movie to their list of favorites</td>
-    <td>/users/movies/[ID]</td>
-    <td>PUT</td>
+    <td>/users/[username]/movies/[MovieID]</td>
+    <td>POST</td>
     <td>None</td>
-    <td>A text message indicating that the user has successfully added movie to the favourites</td>
+    <td>A text message indicating that the user has successfully added movie to the favourites. <br>
+      {
+        "_id": "6164106e274060b75870fc6f",
+        "Username": "I love movies so much",
+        "Password": "I still love movies",
+        "Email": "movielover66993@gmail.com",
+        "Birthday": "1987-09-20T00:00:00.000Z",
+        "FavoriteMovies": [
+            "6163f026274060b75870fc65",
+            "6163ecd5274060b75870fc62",
+            "6163ecd5274060b75870fc62"
+        ]
+    }</td>
     </tr>
     <tr>
     <td>Allow users to remove a movie from their list of favorites</td>
-    <td>/users/movies/[ID]</td>
+    <td>/users/[username]/movies/[MovieID]</td>
     <td>DELETE</td>
     <td>None</td>
-    <td>A text message indicating that the movie was successfully removed from the list of favorites</td>
+    <td>Updated info on the user. <br>{
+      "_id": "6164106e274060b75870fc6f",
+      "Username": "I love movies so much",
+      "Password": "I still love movies",
+      "Email": "movielover66993@gmail.com",
+      "Birthday": "1987-09-20T00:00:00.000Z",
+      "FavoriteMovies": [
+          "6163f026274060b75870fc65",
+          "6163ecd5274060b75870fc62"
+      ]
+  }</td>
     </tr>
     <tr>
     <td>Allow existing users to deregister</td>
-    <td>/users/[ID]</td>
+    <td>/users/[username]</td>
     <td>DELETE</td>
     <td>None</td>
-    <td>A text message indicating that the user has successfully deregistered</td>
+    <td>A text message indicating that the user has successfully deregistered. <br>
+    Example: testuser103 was deleted. </td>
     </tr>
     </tbody>
     </table>
