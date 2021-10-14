@@ -37,7 +37,7 @@ mongoose.connect('mongodb://localhost:27017/test', {
 let auth = require('./auth')(app);
 
 const passport = require('passport');
-require('./passport');
+require('passport');
 
 // Create another GET route located at the endpoint “/” that returns a default textual response of your choosing.
 
