@@ -3,13 +3,14 @@ const {
   v4: uuidv4
 } = require('uuid');
 morgan = require('morgan');
+const bodyParser = require('body-parser');
 const app = express();
 
 //express.static
 app.use(morgan('common'));
 app.use(express.json());
 app.use(express.static('public'));
-// app.use('documentation', express.static('public'));
+
 
 const mongoose = require('mongoose');
 const Models = require('./models.js');
@@ -18,12 +19,25 @@ const Movies = Models.Movie;
 const Users = Models.User;
 // const Directors = Models.Directors;
 
+// //activating body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 
 mongoose.connect('mongodb://localhost:27017/test', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
+
+
+//calling passport and authorization 
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
 
 // Create another GET route located at the endpoint “/” that returns a default textual response of your choosing.
 
@@ -34,7 +48,9 @@ app.get('/', (req, res) => {
 // Return a list of all movies & users 
 
 
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
