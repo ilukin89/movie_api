@@ -1,8 +1,8 @@
 const express = require('express');
-const {
-  v4: uuidv4
-} = require('uuid');
-morgan = require('morgan');
+// const {
+//   v4: uuidv4
+// } = require('uuid');
+const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -37,7 +37,7 @@ mongoose.connect('mongodb://localhost:27017/test', {
 let auth = require('./auth')(app);
 
 const passport = require('passport');
-require('passport');
+require('./passport');
 
 // Create another GET route located at the endpoint “/” that returns a default textual response of your choosing.
 
@@ -55,9 +55,9 @@ app.get('/movies', passport.authenticate('jwt', {
     .then((movies) => {
       res.status(201).json(movies);
     })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
     });
 });
 
