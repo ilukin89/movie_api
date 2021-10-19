@@ -44,13 +44,18 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+/* LOCAL DATABASE */
 
-mongoose.connect('mongodb://localhost:27017/test', {
+// mongoose.connect('mongodb://localhost:27017/test', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+
+
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-
-
 
 //calling passport and authorization 
 let auth = require('./auth')(app);
