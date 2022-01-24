@@ -26,7 +26,7 @@ const Users = Models.User;
 /* ALLOW CERTAIN DOMAIN ONLY */
 
 
-let allowedOrigins = ['http://localhost:1234', 'https://i.ibb.co'];
+let allowedOrigins = ['http://localhost:1234', 'https://i.ibb.co, 'http://localhost:4200/'];
 
 app.use(cors({
   origin: (origin, callback) => {
