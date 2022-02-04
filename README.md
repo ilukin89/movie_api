@@ -6,8 +6,8 @@
   <h1>Essential features</h1>
   
   <h2> Code example </h2>
-  ```
-  /**
+  
+  ```/**
  * Get all movies
  * @method GET
  * @param {string} endpoint - endpoint to fetch movies. "url/movies"
@@ -26,8 +26,11 @@ app.get('/movies', passport.authenticate('jwt', {
       console.error(error);
       res.status(500).send('Error: ' + error);
     });
-});
+}); 
 ```
+
+
+
 
   <ul>
     <li>Return a list of ALL movies to the user</li>
