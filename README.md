@@ -4,7 +4,30 @@
     to information about different movies, directors, and genres. Users will be able to sign up, update their personal
     information, and create a list of their favorite movies.</p>
   <h1>Essential features</h1>
+  
+  <h2> Code example </h2>
+  ```
+  /**
+ * Get all movies
+ * @method GET
+ * @param {string} endpoint - endpoint to fetch movies. "url/movies"
+ * @returns {object} - returns the movie object
+  * @requires authentication JWT
+ */
 
+app.get('/movies', passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});
+```
   <ul>
     <li>Return a list of ALL movies to the user</li>
     <li>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by
