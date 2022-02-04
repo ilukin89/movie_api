@@ -28,6 +28,7 @@ app.get('/movies', passport.authenticate('jwt', {
     });
 });
 ```
+
   <ul>
     <li>Return a list of ALL movies to the user</li>
     <li>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by
