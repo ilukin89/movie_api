@@ -26,7 +26,7 @@ app.use(cors());
 /* ALLOW CERTAIN DOMAINS ONLY */
 
 
-let allowedOrigins = ['http://localhost:1234', 'https://i.ibb.co'];
+// let allowedOrigins = ['http://localhost:1234', 'https://i.ibb.co'];
 
 // app.use(cors({
 //   origin: (origin, callback) => {
